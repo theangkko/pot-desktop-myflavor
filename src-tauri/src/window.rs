@@ -117,6 +117,7 @@ pub fn config_window() {
         .unwrap();
     window.set_size(tauri::LogicalSize::new(800, 600)).unwrap();
     window.center().unwrap();
+    window.set_skip_taskbar(false).unwrap();
 }
 
 fn translate_window() -> Window {
@@ -133,7 +134,7 @@ fn translate_window() -> Window {
     if exists {
         return window;
     }
-    window.set_skip_taskbar(true).unwrap();
+    window.set_skip_taskbar(false).unwrap();
     // Get Translate Window Size
     let width = match get("translate_window_width") {
         Some(v) => v.as_i64().unwrap(),
@@ -283,6 +284,7 @@ pub fn recognize_window() {
         window.emit("new_image", "").unwrap();
         return;
     }
+    window.set_skip_taskbar(false).unwrap();
     let width = match get("recognize_window_width") {
         Some(v) => v.as_i64().unwrap(),
         None => {
@@ -353,4 +355,5 @@ pub fn updater_window() {
         .unwrap();
     window.set_size(tauri::LogicalSize::new(600, 400)).unwrap();
     window.center().unwrap();
+    window.set_skip_taskbar(false).unwrap();
 }
